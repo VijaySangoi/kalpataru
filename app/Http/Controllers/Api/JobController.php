@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use OpenApi\Annotations as OA;
 use Illuminate\Http\Request;
+use App\Models\triggers;
 
 class JobController extends Controller
 {
@@ -28,6 +29,21 @@ class JobController extends Controller
      */
     public function trigger(Request $req, $job_id)
     {
-        echo $job_id;
+        $qy = triggers::select('*');
+        $qy->where('id',$job_id);
+        $rec = $qy->first();
+        if(!$rec)
+        {
+            return response()->json('invalid trigger',500);
+        }
+        $jobs = json_decode($rec->jobs);
+        foreach ($jobs as $key => $val)
+        {
+            $arr = explode(":",$val);
+            $job = "App\Jobs\\".$arr[0];
+            $line = $arr[1]??"default";
+            $dummy = $job::dispatch()->onQueue($line);
+            echo $val."\n";
+        }
     }
 }

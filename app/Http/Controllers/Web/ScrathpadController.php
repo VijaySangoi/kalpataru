@@ -25,4 +25,9 @@ class ScrathpadController extends Controller
     {
         return view('web.scrathpad');
     }
+    public function api()
+    {
+        $data = file(app_path('Jobs')."/samplejob.php");
+        return $data;
+    }
 }

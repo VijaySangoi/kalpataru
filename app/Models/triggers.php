@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Com extends Model
+class triggers extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Port',
-    ];
-    protected $casts = [
-        'created_at' => 'date:d-m-Y',
-        'updated_at' => 'date:d-m-Y'
+        'name',
+        'jobs'
     ];
 }

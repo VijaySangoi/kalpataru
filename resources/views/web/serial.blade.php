@@ -7,7 +7,6 @@
   </div>
   <div class="col-md-12">
     <div id="tmp" class="card flex">
-      list of connected devices
     </div>
   </div>
 
@@ -15,18 +14,44 @@
   <div class="modal fade" id="coms" tabindex="-1" role="dialog" aria-labelledby="comslabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <!-- <div class="modal-header">
-        <h5 class="modal-title p-2" id="comslabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-          <i class="tim-icons icon-simple-remove"></i>
-        </button>
-      </div> -->
+        <div class="modal-header">
+          <h5 class="modal-title p-2" id="comslabel">Coms Add</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="tim-icons icon-simple-remove"></i>
+          </button>
+        </div>
         <div class="modal-body" id="modal_body">
-         
+
         </div>
         <div class="modal-footer">
           <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button id="save" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="coms-edit" tabindex="-1" role="dialog" aria-labelledby="comseditlabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title p-2" id="comslabel">Coms Edit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <i class="tim-icons icon-simple-remove"></i>
+          </button>
+        </div>
+        <div class="modal-body" id="modal_edit_body">
+
+        </div>
+        <div class="modal-footer">
+          <div class="row col-md-12">
+            <div class="col-md-4">
+              <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+            <div class="col-md-8 text-right">
+              <button id="delete" type="button" class="btn btn-primary">Delete</button>
+              <button id="save" type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -39,56 +64,46 @@
 <script>
   apitoken = $('#api-token')[0].value;
   formify('modal_body', [
-    ["text", "port", "port"]
+    ["text", "add_port", "port"]
   ]);
-  // $.ajax({
-  //   url: "/api/devices/serial",
-  //   type: "GET",
-  //   headers: {
-  //     "Authorization": "Bearer " + apitoken
-  //   },
-  //   success: (e) => {
-  //     var table = new Tabulator("#tmp", {
-  //       data: e, //assign data to table
-  //       autoColumns: true, //create columns from data field names
-  //     });
-  //   }
-  // })
-    var table = new Tabulator("#tmp", {
-      ajaxConfig:{
-        method:"GET",
-        headers:{"Authorization": "Bearer " + apitoken}
-      },
-      pagination:true,
-      paginationMode:"remote",
-      ajaxURL:"/api/devices/serial",
-      paginationSize:10,
-      paginationInitialPage:1,
-      autoColumns:true,
-      layout:"fitColumns",
-      rowFormatter:(row,data)=>{
-        console.log(row.getData());
-      }
-  });
-  $("#save").click(() => {
-    port = $("#port").val();
-    $.ajax({
-      url: "/api/devices/serial",
-      type: "post",
+  formify('modal_edit_body', [
+    ["text", "id", "id", "disabled"],
+    ["text", "edit_port", "port", ""],
+    ["text", "created_date", "created-date", "disabled"],
+    ["text", "updated_date", "updated-date", "disabled"],
+  ]);
+  var table = new Tabulator("#tmp", {
+    ajaxConfig: {
+      method: "GET",
       headers: {
         "Authorization": "Bearer " + apitoken
-      },
-      data: {
-        "port": port
-      },
-      success: (e) => {
-        // $("#tmp").html(e);
-        var table = new Tabulator("#tmp", {
-          data: e, //assign data to table
-          autoColumns: true, //create columns from data field names
-        });
       }
-    })
+    },
+    pagination: true,
+    paginationMode: "remote",
+    ajaxURL: "/api/devices/serial",
+    paginationSize: 10,
+    autoColumns: true,
+    layout: "fitColumns",
+  });
+  $("#coms #save").click(() => {
+    port = $("#add_port").val();
+    table.setData("/api/devices/serial",{"port": port},"POST");
+    $("#coms").modal("hide");
+  });
+  $("#coms-edit #save").click(() => {
+    port = $("#edit_port").val();
+    id = $("#id").val();
+    table.setData("/api/devices/serial",{"port": port,"id":id},"POST");
+    $("#coms-edit").modal("hide");
+  });
+  table.on("rowClick", (e, row) => {
+    $("#coms-edit").modal("show");
+    data = row.getData();
+    $("#id").val(data.id);
+    $("#coms-edit #edit_port").val(data.Port);
+    $("#created_date").val(data.created_at);
+    $("#updated_date").val(data.updated_at);
   });
 </script>
 @endpush

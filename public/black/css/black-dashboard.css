@@ -12452,8 +12452,8 @@ img {
 
 .modal-content .modal-header button {
   position: absolute;
-  right: 27px;
-  top: 24px;
+  right: 12px;
+  top: 8px;
   outline: 0;
   padding: 1rem;
   margin: -1rem -1rem -1rem auto;
@@ -12466,7 +12466,7 @@ img {
 }
 
 .modal-content .modal-header .modal-title {
-  color: #222a42;
+  color: #fff;
 }
 
 .modal-content .modal-header i.tim-icons {
@@ -17923,4 +17923,17 @@ option{
 	border-radius: 10px;
 	-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.3);
 	background-color: #555;
+}
+
+.form-control::placeholder{
+  color:#fff;
+}
+
+.editor{
+  width:85vw;
+  height:85vh;
+  border:1px solid var(--gray);
+  border-radius: 5px;
+  background-color: var(--gray-dark);
+  color:#fff;
 }
