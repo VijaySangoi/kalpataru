@@ -127,6 +127,106 @@
                     }
                 ]
             }
+        },
+        "/api/cip/register": {
+            "post": {
+                "tags": [
+                    "CIP"
+                ],
+                "summary": "register endpoint",
+                "description": "hit this endpoint with microcontroller and register/list/notify your ip address and details to server ",
+                "operationId": "333b09165d91a6793f24b5f95131b549",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "device_name"
+                                ],
+                                "properties": {
+                                    "device_name": {
+                                        "description": "allowed only camel_case, if not passed as camel case the server will convert it to camel_case",
+                                        "type": "string",
+                                        "example": "3d_printer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
+        "/api/cip/message": {
+            "get": {
+                "tags": [
+                    "CIP"
+                ],
+                "summary": "register endpoint",
+                "description": "hit this endpoint with microcontroller and register/list/notify your ip address and details to server ",
+                "operationId": "c1cc826e3420686dcd8ecb3a52695737",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "CIP"
+                ],
+                "summary": "register endpoint",
+                "description": "hit this endpoint with microcontroller and register/list/notify your ip address and details to server ",
+                "operationId": "805e9d0b7c039e726a15511b145ebdff",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "device_name"
+                                ],
+                                "properties": {
+                                    "device_name": {
+                                        "description": "allowed only camel_case, if not passed as camel case the server will convert it to camel_case",
+                                        "type": "string",
+                                        "example": "3d_printer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
         }
     },
     "components": {
