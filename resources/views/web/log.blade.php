@@ -67,8 +67,8 @@
         e.preventDefault();
         fl_name = $("#inp_file").val();
         $.ajax({
-            url: "/api/view-log-file",
-            type: "POST",
+            url: "/api/log-file",
+            type: "GET",
             headers: {
                 "Authorization": "Bearer " + apitoken
             },
@@ -82,14 +82,16 @@
     });
     $("#send").click((e) => {
         e.preventDefault();
+        fl_name = $("#inp_file").val();
         message = $("#message").val();
         $.ajax({
-            url: "/api/write-log-file",
+            url: "/api/log-file",
             type: "POST",
             headers: {
                 "Authorization": "Bearer " + apitoken
             },
             data: {
+                "fl_name": fl_name,
                 "message": message
             },
             success: (e) => {

@@ -17,15 +17,10 @@ class AllApiController extends Controller
         $files = LogController::list_log_file();
         return response()->json($files, 200);
     }
-    public function view_log_files(Request $req)
+    public function log_files(Request $req)
     {
-        $files = LogController::view_log_file($req);
-        return response()->json($files, 200);
-    }
-    public function write_log_files(Request $req)
-    {
-        $files = LogController::write_log_file($req);
-        return response()->json($files,200);
+        $res = LogController::log_file($req);
+        return response()->json($res, 200);
     }
     public function list_serial_devices(Request $req)
     {
