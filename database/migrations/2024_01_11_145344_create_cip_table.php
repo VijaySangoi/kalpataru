@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('coms', function (Blueprint $table) {
+        Schema::create('cip', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('port');
-            $table->integer('baudrate');
-            $table->boolean('status')->nullable();
+            $table->string('device_name');
+            $table->ipAddress('peer');
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('coms');
+        Schema::dropIfExists('cip');
     }
 };

@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Triggers extends Model
+class CIP extends Model
 {
     use HasFactory;
+    protected $table = 'cip';
     protected $fillable = [
-        'name',
-        'jobs'
+        'device_name',
+        'peer',
     ];
     protected $casts = [
         'created_at' => 'date:d-m-Y',

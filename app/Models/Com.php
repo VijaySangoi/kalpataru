@@ -9,7 +9,10 @@ class Com extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'Port',
+        'name',
+        'port',
+        'baudrate',
+        'status',
     ];
     protected $casts = [
         'created_at' => 'date:d-m-Y',
