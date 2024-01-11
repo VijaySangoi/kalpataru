@@ -13,19 +13,24 @@ class SerialController extends Controller
     }
     public static function list_serial_devices(Request $req)
     {
-        if ($req->isMethod('post') && isset($_POST['port'])) {
-            $port = $_POST['port'];
+        if ($req->isMethod('post')) {
             if(!isset($_POST['id']))
             {
-                $query = Com::firstOrCreate(
-                    ["Port" => $port],
+                $query = Com::create(
+                    [
+                        "name" => $_POST['name'],
+                        "port" => $_POST['port'],
+                        "baudrate" => $_POST['baudrate'],
+                    ],
                 );
             }
             if(isset($_POST['id']))
             {
                 $id = $_POST['id'];
                 $rec = Com::where("id",$id)->first();
-                $rec->Port = $port;
+                $rec->name = $_POST['name'];
+                $rec->port = $_POST['port'];
+                $rec->baudrate = $_POST['baudrate'];
                 $rec->save();
             }
         }

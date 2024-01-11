@@ -3,72 +3,31 @@
 @section('content')
 <div class="row">
   <div class="col-md-4 offset-md-8">
-    <button type="button" class="btn btn-fill btn-primary" data-toggle="modal" data-target="#coms">click me</button>
+    <button type="button" class="btn btn-fill btn-primary" data-toggle="modal" data-target="#add">click me</button>
   </div>
   <div class="col-md-12">
     <div id="tmp" class="card flex">
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="coms" tabindex="-1" role="dialog" aria-labelledby="comslabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title p-2" id="comslabel">Coms Add</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-        </div>
-        <div class="modal-body" id="modal_body">
-
-        </div>
-        <div class="modal-footer">
-          <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button id="save" type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal fade" id="coms-edit" tabindex="-1" role="dialog" aria-labelledby="comseditlabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title p-2" id="comslabel">Coms Edit</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-            <i class="tim-icons icon-simple-remove"></i>
-          </button>
-        </div>
-        <div class="modal-body" id="modal_edit_body">
-
-        </div>
-        <div class="modal-footer">
-          <div class="row col-md-12">
-            <div class="col-md-4">
-              <button id="close" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            </div>
-            <div class="col-md-8 text-right">
-              <button id="delete" type="button" class="btn btn-primary">Delete</button>
-              <button id="save" type="button" class="btn btn-primary">Save changes</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  @include('modal.add',['heading'=>'Coms Add'])
+  @include('modal.edit',['heading'=>'Coms Edit'])
 </div>
 @endsection
 
 @push('js')
-<script type="text/javascript" src="{{asset('web')}}/formaker.js"></script>
 <script>
   apitoken = $('#api-token')[0].value;
   formify('modal_body', [
-    ["text", "add_port", "port"]
+    ["text", "add_name", "name"],
+    ["text", "add_port", "port"],
+    ["text", "add_baudrate", "baudrate"]
   ]);
   formify('modal_edit_body', [
     ["text", "id", "id", "disabled"],
+    ["text", "edit_name", "name", ""],
     ["text", "edit_port", "port", ""],
+    ["text", "edit_baudrate", "baudrate", ""],
     ["text", "created_date", "created-date", "disabled"],
     ["text", "updated_date", "updated-date", "disabled"],
   ]);
@@ -86,22 +45,27 @@
     autoColumns: true,
     layout: "fitColumns",
   });
-  $("#coms #save").click(() => {
+  $("#add #save").click(() => {
     port = $("#add_port").val();
-    table.setData("/api/devices/serial",{"port": port},"POST");
-    $("#coms").modal("hide");
+    baud = $("#add_baudrate").val();
+    name = $("#add_name").val();
+    table.setData("/api/devices/serial",{"port": port,"baudrate":baud,"name":name},"POST");
+    $("#add").modal("hide");
   });
-  $("#coms-edit #save").click(() => {
+  $("#edit #save").click(() => {
     port = $("#edit_port").val();
+    baudrate = $("#edit_baudrate").val();
     id = $("#id").val();
-    table.setData("/api/devices/serial",{"port": port,"id":id},"POST");
-    $("#coms-edit").modal("hide");
+    table.setData("/api/devices/serial",{"port": port,"id":id,"baudrate":baudrate},"POST");
+    $("#edit").modal("hide");
   });
   table.on("rowClick", (e, row) => {
-    $("#coms-edit").modal("show");
+    $("#edit").modal("show");
     data = row.getData();
     $("#id").val(data.id);
-    $("#coms-edit #edit_port").val(data.Port);
+    $("#edit #edit_port").val(data.port);
+    $("#edit #edit_baudrate").val(data.baudrate);
+    $("#edit #edit_name").val(data.name);
     $("#created_date").val(data.created_at);
     $("#updated_date").val(data.updated_at);
   });
