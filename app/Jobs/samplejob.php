@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Symfony\Component\Process\Process;
+use App\Models\Com;
 
 class samplejob implements ShouldQueue
 {
@@ -27,13 +28,16 @@ class samplejob implements ShouldQueue
      */
     public function handle(): void
     {
-        $com = "COM4";
-        $path = "app/Comms/InterfaceSerial.py";
-        $arr = ["python", $path, $com, "115200"];
-        $process = new Process($arr);
-        $process->start();
-        // echo "output " . $process->getOutput();
-        // sleep(5);
+        $rec = Com::select('Port','BaudRate')->get();
+        foreach($rec as $ky => $val)
+        {
+            $com = strtoupper($val->Port);
+            $path = "app/Comms/InterfaceSerial.py";
+            $arr = ["python", $path, $com, $val->BaudRate];
+            $process = new Process($arr);
+            $process->start();
+        }
+        sleep(5);
         self::dispatch()->onQueue($this->q_name);
     }
 }

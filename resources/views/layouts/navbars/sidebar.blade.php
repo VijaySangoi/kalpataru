@@ -25,16 +25,16 @@
                     <p>{{ __('Serial') }}</p>
                 </a>
             </li>
-            <li @if ($pageSlug == 'can') class="active " @endif>
-                <a href="{{'/can'}}">
+            <li @if ($pageSlug == 'workers') class="active " @endif>
+                <a href="{{'/workers'}}">
                     <i class="tim-icons icon-puzzle-10"></i>
-                    <p>{{ __('Controller Area Network') }}</p>
+                    <p>{{ __('Workers') }}</p>
                 </a>
             </li>
-            <li @if ($pageSlug == 'tcp_ip') class="active " @endif>
-                <a href="{{'/tcp-ip'}}">
+            <li @if ($pageSlug == 'cip') class="active " @endif>
+                <a href="{{'/cip'}}">
                     <i class="tim-icons icon-puzzle-10"></i>
-                    <p>{{ __('TCP/IP') }}</p>
+                    <p>{{ __('CIP') }}</p>
                 </a>
             </li>
             <li @if ($pageSlug == 'logs') class="active " @endif>
