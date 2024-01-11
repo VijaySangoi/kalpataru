@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use OpenApi\Annotations as OA;
 use Illuminate\Http\Request;
-use App\Models\triggers;
+use App\Models\Triggers;
 
 class JobController extends Controller
 {
@@ -29,7 +29,7 @@ class JobController extends Controller
      */
     public function trigger(Request $req, $job_id)
     {
-        $qy = triggers::select('*');
+        $qy = Triggers::select('*');
         $qy->where('id',$job_id);
         $rec = $qy->first();
         if(!$rec)

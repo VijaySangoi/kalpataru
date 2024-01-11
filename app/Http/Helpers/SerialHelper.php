@@ -29,7 +29,7 @@ class SerialHelper
     }
     public static function write($com, $mess)
     {
-        $name = app_path("\Comms\__pipe\\" . $com . "-pipe-" . date("d") . "_" . date("m") . "_" . date("Y") . ".txt");
+        $name = app_path("\Comms\__pipe\\" . $com . "-pipe-" . date("d") . "_" . date("n") . "_" . date("Y") . ".txt");
         $file = fopen($name, "a");
         fwrite($file, $mess . "\n");
         fclose($file);

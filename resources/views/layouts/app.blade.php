@@ -23,7 +23,8 @@
     <!-- <link href="{{ asset('bootstrap') }}/bootstrap.min.css" rel="stylesheet" />
     <script src="{{ asset('bootstrap') }}/bootstrap.bundle.min.js" ></script> -->
     <link href="{{asset('web')}}/tabulator/tabulator_midnight.min.css" rel="stylesheet">
- <script type="text/javascript" src="{{asset('web')}}/tabulator/tabulator.min.js"></script>
+    <script type="text/javascript" src="{{asset('web')}}/tabulator/tabulator.min.js"></script>
+    <script type="text/javascript" src="{{asset('web')}}/formaker.js"></script>
 </head>
 
 <body class="{{ $class ?? '' }}">
