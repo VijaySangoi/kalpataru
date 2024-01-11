@@ -7,7 +7,7 @@ from datetime import datetime
 
 class InterfaceSerial:
     def __init__(self,*args):
-        print("reached here")
+        # print("reached here")
         self.args = args[0]
         self.file()
         try:
