@@ -26,4 +26,6 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::match(['GET','POST'],'/trigger','App\Http\Controllers\Api\AllApiController@list_trigger');
     Route::post('/cip/register','App\Http\Controllers\Api\AllApiController@cip_register');
     Route::get('/cip','App\Http\Controllers\Api\AllApiController@list_cip');
+    Route::match(['GET','POST','DELETE'],'/sensors','App\Http\Controllers\Api\AllApiController@sensors');
+    Route::post('/sensor_pos','App\Http\Controllers\Api\AllApiController@sensors_pos');
 });
