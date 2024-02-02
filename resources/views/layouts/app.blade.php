@@ -14,7 +14,7 @@
     <link rel="icon" type="image/png" href="{{ asset('black') }}/img/favicon.png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <!-- Icons -->
     <link href="{{ asset('black') }}/css/nucleo-icons.css" rel="stylesheet" />
     <!-- CSS -->
@@ -31,15 +31,19 @@
     @auth()
     <input type="hidden" id="api-token" @if($apiToken) value={{$apiToken}} @endif>
     <div class="wrapper">
-        @include('layouts.navbars.sidebar')
         <div class="main-panel">
             @include('layouts.navbars.navbar')
-
-            <div class="content">
-                @yield('content')
+            <div class="content flex">
+                <div class="row ">
+                    <div class="collapse show" id="sidebar">
+                        @include('layouts.navbars.sidebar')
+                    </div>
+                    <div id="fallout" class="fallout">
+                        @yield('content')
+                    </div>
+                </div>
+                @include('layouts.footer')
             </div>
-
-            @include('layouts.footer')
         </div>
     </div>
     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -49,7 +53,7 @@
     @include('layouts.navbars.navbar')
     <div class="wrapper wrapper-full-page">
         <div class="full-page {{ $contentClass ?? '' }}">
-            <div class="content">
+            <div class="content flex">
                 <div class="container">
                     @yield('content')
                 </div>
@@ -58,7 +62,7 @@
         </div>
     </div>
     @endauth
-    
+
     <script src="{{ asset('black') }}/js/core/jquery.min.js"></script>
     <script src="{{ asset('black') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('black') }}/js/core/bootstrap.min.js"></script>
@@ -72,7 +76,7 @@
 
     <script src="{{ asset('black') }}/js/black-dashboard.js?v=1.0.0"></script>
     <script src="{{ asset('black') }}/js/theme.js"></script>
-
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
         $(document).ready(function() {
             $().ready(function() {
@@ -168,6 +172,19 @@
                     }
                 });
             });
+        });
+        $('#brand').click(() => {
+            var show = $('#sidebar').hasClass('show');
+            if(show)
+            {
+                $('#fallout').width('80vw');
+                $('#fallout').width('98vw');
+            }
+            if(!show)
+            {
+                $('#fallout').width('98vw');
+                $('#fallout').width('80vw');
+            }
         });
     </script>
     @stack('js')
