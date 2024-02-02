@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('triggers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->uuid('endpoint');
             $table->json('jobs')->nullable();
             $table->timestamps();
         });
