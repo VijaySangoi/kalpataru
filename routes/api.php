@@ -25,5 +25,5 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::match(['GET','POST'],'/workers','App\Http\Controllers\Api\AllApiController@list_workers');
     Route::match(['GET','POST'],'/trigger','App\Http\Controllers\Api\AllApiController@list_trigger');
     Route::post('/cip/register','App\Http\Controllers\Api\AllApiController@cip_register');
-    Route::match(['GET','POST'],'/cip/message','App\Http\Controllers\Api\AllApiController@cip_message');
+    Route::get('/cip','App\Http\Controllers\Api\AllApiController@list_cip');
 });
