@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/logs', 'App\Http\Controllers\Web\LogController@index');
 	Route::get('/cip', 'App\Http\Controllers\Web\CIPController@index');
 	Route::get('/triggers', 'App\Http\Controllers\Web\TriggersController@index');
+	Route::get('/sensors', 'App\Http\Controllers\Web\SensorsController@index');
 });
 
 // Route::group(['middleware' => 'auth'], function () {
