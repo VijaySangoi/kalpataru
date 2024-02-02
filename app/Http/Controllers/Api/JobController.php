@@ -30,7 +30,7 @@ class JobController extends Controller
     public function trigger(Request $req, $job_id)
     {
         $qy = Triggers::select('*');
-        $qy->where('id',$job_id);
+        $qy->where('endpoint',$job_id);
         $rec = $qy->first();
         if(!$rec)
         {
@@ -43,7 +43,6 @@ class JobController extends Controller
             $job = "App\Jobs\\".$arr[0];
             $line = $arr[1]??"default";
             $dummy = $job::dispatch()->onQueue($line);
-            echo $val."\n";
         }
     }
 }
