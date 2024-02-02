@@ -8,7 +8,7 @@
                     <span class="navbar-toggler-bar bar3"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="#">{{ __('Kalpataru') }}</a>
+            <a id="brand" href="#sidebar" aria-expanded="true" aria-controls="sidebar" data-toggle="collapse" class="navbar-brand">{{ __('Kalpataru') }}</a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-bar navbar-kebab"></span>
