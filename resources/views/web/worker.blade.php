@@ -75,5 +75,10 @@
     table.setData("/api/workers",{"id":id,"worker":worker,"tries":tries,"timeout":timeout,"memory":memory},"POST");
     $("#edit").modal("hide");
   });
+  $("#delete").click(()=>{
+    id = $("#id").val();
+    table.setData("/api/workers",{"id":id},"DELETE");
+    $("#edit").modal("hide");
+  });
 </script>
 @endpush
