@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\SerialController;
 use App\Http\Controllers\Web\WorkerController;
 use App\Http\Controllers\Web\TriggersController;
 use App\Http\Controllers\Web\CIPController;
+use App\Http\Controllers\Web\SensorsController;
 
 class AllApiController extends Controller
 {
@@ -48,6 +49,11 @@ class AllApiController extends Controller
     public function cip_message(Request $req)
     {
         $res = CIPController::cip_message($req);
+        return $res;
+    }
+    public function sensors(Request $req)
+    {
+        $res = SensorsController::sensors($req);
         return $res;
     }
 }
