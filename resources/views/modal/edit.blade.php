@@ -1,4 +1,4 @@
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editlabel" aria-hidden="true">
+<div class="modal fade" id="{{$pane_id??'edit'}}" tabindex="-1" role="dialog" aria-labelledby="editlabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -7,7 +7,7 @@
                     <i class="tim-icons icon-simple-remove"></i>
                 </button>
             </div>
-            <div class="modal-body" id="modal_edit_body">
+            <div class="modal-body" id="{{$body_id??'modal_edit_body'}}">
 
             </div>
             <div class="modal-footer">
