@@ -14,13 +14,19 @@ class SerialController extends Controller
     public static function list_serial_devices(Request $req)
     {
         if ($req->isMethod('post')) {
+            if(empty($_POST['name'])) goto chk;
+            $name = $_POST['name'];
+            if(empty($_POST['port'])) goto chk;
+            $port = $_POST['port'];
+            if(empty($_POST['baudrate'])) goto chk;
+            $baudrate = $_POST['baudrate'];
             if(!isset($_POST['id']))
             {
                 $query = Com::create(
                     [
-                        "name" => $_POST['name'],
-                        "port" => $_POST['port'],
-                        "baudrate" => $_POST['baudrate'],
+                        "name" => $name,
+                        "port" => $port,
+                        "baudrate" => $baudrate,
                     ],
                 );
             }
@@ -28,12 +34,18 @@ class SerialController extends Controller
             {
                 $id = $_POST['id'];
                 $rec = Com::where("id",$id)->first();
-                $rec->name = $_POST['name'];
-                $rec->port = $_POST['port'];
-                $rec->baudrate = $_POST['baudrate'];
+                $rec->name = $name ?? $rec->name;
+                $rec->port = $port ?? $rec->port;
+                $rec->baudrate = $baudrate ?? $rec->baudrate;
                 $rec->save();
             }
         }
+        if ($req->isMethod('delete')) {
+            $id = $_POST['id'];
+            $rec = Com::where("id", $id)->first();
+            $rec->delete();
+        }
+        chk:
         $size = $_GET['size'] ?? $_POST['size'] ?? 10;
         $page = $_GET['page'] ?? $_POST['page'] ?? 1;
         $query = Com::select('*');
