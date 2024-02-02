@@ -56,6 +56,11 @@ class AllApiController extends Controller
         $res = SensorsController::sensors($req);
         return $res;
     }
+    public function list_cip(Request $req)
+    {
+        $res = CIPController::list_cip($req);
+        return $res;
+    }
     public function sensors_pos(Request $req)
     {
         $res = SensorsController::sensors_pos($req);
