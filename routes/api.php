@@ -29,4 +29,6 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::match(['GET','POST','DELETE'],'/cip/message','App\Http\Controllers\Api\AllApiController@cip_message');
     Route::match(['GET','POST','DELETE'],'/sensors','App\Http\Controllers\Api\AllApiController@sensors');
     Route::post('/sensor_pos','App\Http\Controllers\Api\AllApiController@sensors_pos');
+    Route::post('/dashboard_component','App\Http\Controllers\Api\AllApiController@dashboard_component');
+    Route::post('/sheet','App\Http\Controllers\Api\AllApiController@add_sheet');
 });

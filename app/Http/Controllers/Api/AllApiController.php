@@ -9,6 +9,7 @@ use App\Http\Controllers\Web\SerialController;
 use App\Http\Controllers\Web\WorkerController;
 use App\Http\Controllers\Web\TriggersController;
 use App\Http\Controllers\Web\CIPController;
+use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Web\SensorsController;
 
 class AllApiController extends Controller
@@ -64,6 +65,16 @@ class AllApiController extends Controller
     public function sensors_pos(Request $req)
     {
         $res = SensorsController::sensors_pos($req);
+        return $res;
+    }
+    public function dashboard_component(Request $req)
+    {
+        $res = HomeController::dashboard_component($req);
+        return $res;
+    }
+    public function add_sheet(Request $req)
+    {
+        $res = HomeController::add_sheet($req);
         return $res;
     }
 }
