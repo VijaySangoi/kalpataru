@@ -69,5 +69,10 @@
     $("#created_date").val(data.created_at);
     $("#updated_date").val(data.updated_at);
   });
+  $("#delete").click(()=>{
+    id = $("#id").val();
+    table.setData("/api/devices/serial",{"id":id},"DELETE");
+    $("#edit").modal("hide");
+  });
 </script>
 @endpush
