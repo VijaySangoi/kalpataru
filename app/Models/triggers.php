@@ -10,6 +10,7 @@ class Triggers extends Model
     use HasFactory;
     protected $fillable = [
         'name',
+        'endpoint',
         'jobs'
     ];
     protected $casts = [
