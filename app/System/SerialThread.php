@@ -19,7 +19,7 @@ class SerialThread implements ShouldQueue
      */
     public function __construct()
     {
-        $this->q_name = "rn1";
+        $this->q_name = "system";
     }
 
     /**

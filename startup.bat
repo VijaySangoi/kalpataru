@@ -1,0 +1,1 @@
+start /b php artisan queue:work --queue=system

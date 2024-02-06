@@ -26,6 +26,6 @@ class scrathpad extends Command
      */
     public function handle()
     {
-        SerialThread::dispatch()->onQueue("rn1");
+        SerialThread::dispatch()->onQueue("system");
     }
 }
