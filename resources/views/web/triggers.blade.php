@@ -56,7 +56,6 @@
   table.on("rowClick", (e, row) => {
     $("#edit").modal("show");
     data = row.getData();
-    console.log(data.jobs);
     $("#id").val(data.id);
     $("#edit_trigger").val(data.name);
     $("#edit_url").val(data.url);
