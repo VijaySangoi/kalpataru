@@ -32,9 +32,6 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script>
-<script src="{{ asset('web') }}/scrathpad.js"></script>
-<!-- <script src="{{ asset('web') }}/blockly.js"></script> -->
 <script>
     formify('modal_body', [
         ["text", "add_Sheet", "name"]
