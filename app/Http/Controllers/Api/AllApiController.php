@@ -77,4 +77,24 @@ class AllApiController extends Controller
         $res = HomeController::add_sheet($req);
         return $res;
     }
+    public function trigger(Request $req,$job_id)
+    {
+        $res = JobController::trigger($req,$job_id);
+        return $res;
+    }
+    public function option(Request $req)
+    {
+        $res = JobController::option($req);
+        return $res;
+    }
+    public function file(Request $req,$file)
+    {
+        $res = JobController::file($req,$file);
+        return $res;
+    }
+    public function job(Request $req)
+    {
+        $res = JobController::job($req);
+        return $res;
+    }
 }

@@ -18,8 +18,10 @@ Route::post('/login','App\Http\Controllers\Api\AuthController@login');
 Route::post('/register','App\Http\Controllers\Api\AuthController@register');
 Route::middleware('auth:sanctum')->group( function () {
     Route::get('/list-log-file','App\Http\Controllers\Api\AllApiController@list_log_files');
-    Route::get('/trigger/{job_id}','App\Http\Controllers\Api\JobController@trigger');
-    Route::get('/scrathpad','App\Http\Controllers\Web\ScrathpadController@api');
+    Route::get('/trigger/{job_id}','App\Http\Controllers\Api\AllApiController@trigger');
+    Route::get('/option','App\Http\Controllers\Api\AllApiController@option');
+    Route::post('/job','App\Http\Controllers\Api\AllApiController@job');
+    Route::get('/file/{file}','App\Http\Controllers\Api\AllApiController@file');
     Route::match(['GET','POST','DELETE'],'/devices/serial','App\Http\Controllers\Api\AllApiController@list_serial_devices');
     Route::match(['GET','POST','DELETE'],'/log-file','App\Http\Controllers\Api\AllApiController@log_files');
     Route::match(['GET','POST','DELETE'],'/workers','App\Http\Controllers\Api\AllApiController@list_workers');
