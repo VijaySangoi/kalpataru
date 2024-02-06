@@ -175,7 +175,7 @@
                     "CIP"
                 ],
                 "summary": "register endpoint",
-                "description": "hit this endpoint with microcontroller and register/list/notify your ip address and details to server ",
+                "description": "endpoint for MCU to fetch data. aka-rx of uart",
                 "operationId": "c1cc826e3420686dcd8ecb3a52695737",
                 "responses": {
                     "200": {
@@ -193,7 +193,7 @@
                     "CIP"
                 ],
                 "summary": "register endpoint",
-                "description": "hit this endpoint with microcontroller and register/list/notify your ip address and details to server ",
+                "description": "enpoint for MCU to deliver data. aka-tx of uart",
                 "operationId": "805e9d0b7c039e726a15511b145ebdff",
                 "requestBody": {
                     "description": "json body",
@@ -202,13 +202,24 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "device_name"
+                                    "sensors"
                                 ],
                                 "properties": {
-                                    "device_name": {
-                                        "description": "allowed only camel_case, if not passed as camel case the server will convert it to camel_case",
-                                        "type": "string",
-                                        "example": "3d_printer"
+                                    "sensors": {
+                                        "description": "valid json only",
+                                        "type": "json",
+                                        "example": {
+                                            "robot_arm": {
+                                                "": "G1 X0 Y120 Z120"
+                                            },
+                                            "3d_printer": {
+                                                "hot_end": "220c",
+                                                "ins": "G1 F2700 E-5"
+                                            },
+                                            "miner": {
+                                                "hash": "120h/s"
+                                            }
+                                        }
                                     }
                                 },
                                 "type": "object"
