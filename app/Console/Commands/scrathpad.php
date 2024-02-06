@@ -3,8 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Jobs\samplejob;
-use App\Jobs\samplejob2;
+use App\System\SerialThread;
 
 class scrathpad extends Command
 {
@@ -27,9 +26,6 @@ class scrathpad extends Command
      */
     public function handle()
     {
-        samplejob::dispatch()->onQueue("rn1");
-        // samplejob2::dispatch()->onQueue("rx2");
-        // samplejob::dispatch()->onQueue("rn1");
-        // samplejob2::dispatch()->onQueue("rx2");
+        SerialThread::dispatch()->onQueue("rn1");
     }
 }
