@@ -62,39 +62,42 @@
 
     function fetch_dashboard() {
         var comp = $('.active.drawpad.dashboard.show')[0];
-        var name = comp.id.replace('nav-', '');
-        $.ajax({
-            url: "/api/dashboard_component",
-            type: "POST",
-            headers: {
-                "Authorization": "Bearer " + apitoken
-            },
-            data: {
-                "name": name
-            },
-            success: (e) => {
-                html = "";
-                e.forEach((item, index, arr) => {
-                    html += "<div id=" + item.name + " class='draggable col-md-1' style='--l:" + item.ui_x + "px;--t:" + item.ui_y + "px;'>";
-                    html += "<div>" + item.svg + "</div>";
-                    if (item.value !== "") {
-                        html += "<div>";
-                        html += "<label title=" + item.name + ">";
-                        var objx = JSON.parse(item.value);
-                        for (var key in objx) {
-                            html += key;
-                            html += ":";
-                            html += objx[key];
-                            html += "</br>";
+        if(comp)
+        {
+            var name = comp.id.replace('nav-', '');
+            $.ajax({
+                url: "/api/dashboard_component",
+                type: "POST",
+                headers: {
+                    "Authorization": "Bearer " + apitoken
+                },
+                data: {
+                    "name": name
+                },
+                success: (e) => {
+                    html = "";
+                    e.forEach((item, index, arr) => {
+                        html += "<div id=" + item.name + " class='draggable col-md-1' style='--l:" + item.ui_x + "px;--t:" + item.ui_y + "px;'>";
+                        html += "<div>" + item.svg + "</div>";
+                        if (item.value !== "") {
+                            html += "<div>";
+                            html += "<label title=" + item.name + ">";
+                            var objx = JSON.parse(item.value);
+                            for (var key in objx) {
+                                html += key;
+                                html += ":";
+                                html += objx[key];
+                                html += "</br>";
+                            }
+                            html += "</label>";
+                            html += "</div>";
                         }
-                        html += "</label>";
-                        html += "</div>";
-                    }
-                    html += "</div>"
-                });
-                comp.innerHTML = html;
-            }
-        })
+                        html += "</div>"
+                    });
+                    comp.innerHTML = html;
+                }
+            })
+        }
     }
     $('#save').click((e) => {
         e.preventDefault();
