@@ -3,18 +3,19 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder
+class CIPSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $this->call([
-            MenuSeeder::class,
-            CIPSeeder::class,
+        DB::table('menu')->insert([
+            'device_name' => 'Self',
+            'peer' => '::1',
         ]);
     }
 }
