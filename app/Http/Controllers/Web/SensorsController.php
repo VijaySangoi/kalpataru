@@ -20,12 +20,23 @@ class SensorsController extends Controller
             if(empty($_POST['name'])) goto chk;
             $name = $_POST['name'];
             if (!isset($_POST['id'])) {
+                $svg = '<?xml version="1.0" encoding="utf-8"?>
+                <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>';
+                if(!empty($_POST['svg']))
+                {
+                    echo "svg not empty";
+                    $svg = $_POST['svg'];
+                }
                 $query = Sensor::create([
                     "name" => $_POST['name'],
                     "sheet" => $_POST['sheet'],
-                    "value" => "",
-                    "svg" => $_POST['svg'],
-                    "node" => $_POST['node'],
+                    "value" => "{}",
+                    "ui_x" =>"0",
+                    "ui_y" =>"0",
+                    "svg" => $svg,
+                    "node" => $_POST['node']??"1",
                 ]);
             }
             if (isset($_POST['id'])) {

@@ -12,6 +12,8 @@ class Sensor extends Model
         'name',
         'value',
         'node',
+        'sheet',
+        'svg',
         'ui_x',
         'ui_y',
     ];
