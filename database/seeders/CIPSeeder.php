@@ -13,7 +13,7 @@ class CIPSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('menu')->insert([
+        DB::table('cip')->insert([
             'device_name' => 'Self',
             'peer' => '::1',
         ]);
