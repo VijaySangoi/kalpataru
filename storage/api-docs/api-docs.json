@@ -242,7 +242,7 @@
         "/api/cip": {
             "get": {
                 "tags": [
-                    "Trigger"
+                    "CIP"
                 ],
                 "summary": "list of all cip devices",
                 "description": "returns paginated list with size and page no",
