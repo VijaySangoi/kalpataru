@@ -338,6 +338,172 @@
                     }
                 ]
             }
+        },
+        "/api/list_serial_devices": {
+            "get": {
+                "tags": [
+                    "Serial"
+                ],
+                "summary": "list of all serial device",
+                "description": "returns paginated list with size and page no",
+                "operationId": "09089acd42e2ca7fbfadabc1befe6c68",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page"
+                                ],
+                                "properties": {
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Serial"
+                ],
+                "summary": "api to update or insert",
+                "description": "performs update with id or insert with given details",
+                "operationId": "2d50a8e602265a7ae184e925fd4a2065",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page",
+                                    "name",
+                                    "port",
+                                    "baudrate"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "id of record to be updated, leave eempty if inserting new record",
+                                        "type": "string",
+                                        "example": "5"
+                                    },
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "description": "name of sensor",
+                                        "type": "string",
+                                        "example": "CNC-01"
+                                    },
+                                    "port": {
+                                        "description": "name of com port",
+                                        "type": "string",
+                                        "example": "COM8"
+                                    },
+                                    "baudrate": {
+                                        "description": "baudrate of receiving microcontroller node",
+                                        "type": "string",
+                                        "example": "115200"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Serial"
+                ],
+                "summary": "delete a serial device",
+                "description": "delete a serial device from monitoring list",
+                "operationId": "5a2011ccaba9250643fa035e368597e4",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page",
+                                    "id"
+                                ],
+                                "properties": {
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "id": {
+                                        "description": "id of record to be deleted",
+                                        "type": "string",
+                                        "example": "5"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
         }
     },
     "components": {
