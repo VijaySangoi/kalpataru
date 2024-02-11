@@ -14,6 +14,69 @@ class SensorsController extends Controller
     public function __construct()
     {
     }
+    /**
+     * @OA\GET(
+     *     path="/api/sensors",
+     *     summary="list of all Sensor",
+     *     description="returns paginated list with size and page no",
+     *     tags={"Sensor"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page"},
+     *          type="object",
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     * 
+     * @OA\POST(
+     *     path="/api/sensors",
+     *     summary="api to update or insert",
+     *     description="performs update with id or insert with given details",
+     *     tags={"Sensor"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page","name","sheet","node"},
+     *          type="object",
+     *            @OA\Property(property="id", type="string", example="5", description="id of record to be updated, leave eempty if inserting new record"),
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *            @OA\Property(property="name", type="string", example="temp_sensor-01", description="name of sensor"),
+     *            @OA\Property(property="sheet", type="string", example="1", description="id of sheet"),
+     *            @OA\Property(property="node", type="string", example="1", description="id of cip or serial device"),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     * 
+     * @OA\DELETE(
+     *     path="/api/sensors",
+     *     summary="delete a Sensor",
+     *     description="delete a Sensor",
+     *     tags={"Sensor"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page","id"},
+     *          type="object",
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *            @OA\Property(property="id", type="string", example="5", description="id of record to be deleted"),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     */
     public static function sensors($req)
     {
         if ($req->isMethod('post')) {
