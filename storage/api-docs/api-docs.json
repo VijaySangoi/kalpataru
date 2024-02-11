@@ -505,6 +505,166 @@
                 ]
             }
         },
+        "/api/trigger": {
+            "get": {
+                "tags": [
+                    "Trigger"
+                ],
+                "summary": "list of all trigger",
+                "description": "returns paginated list with size and page no",
+                "operationId": "d53e10ff4c33823ddd0a10f387faf00b",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page"
+                                ],
+                                "properties": {
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Trigger"
+                ],
+                "summary": "api to update or insert",
+                "description": "performs update with id or insert with given details",
+                "operationId": "e40020de6d04fa8eafc4f2cf8e245ba0",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page",
+                                    "name",
+                                    "endpoint"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "id of record to be updated, leave eempty if inserting new record",
+                                        "type": "string",
+                                        "example": "5"
+                                    },
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "description": "name of thread",
+                                        "type": "string",
+                                        "example": "thread-01"
+                                    },
+                                    "endpoint": {
+                                        "description": "number of retry after fail",
+                                        "type": "string",
+                                        "example": "3"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Trigger"
+                ],
+                "summary": "delete a trigger",
+                "description": "delete a trigger from list",
+                "operationId": "3badb1b15f201fe5477bb969f62a221d",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page",
+                                    "id"
+                                ],
+                                "properties": {
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "id": {
+                                        "description": "id of record to be deleted",
+                                        "type": "string",
+                                        "example": "5"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
         "/api/workers": {
             "get": {
                 "tags": [

@@ -14,6 +14,68 @@ class TriggersController extends Controller
     public function __construct()
     {
     }
+    /**
+     * @OA\GET(
+     *     path="/api/trigger",
+     *     summary="list of all trigger",
+     *     description="returns paginated list with size and page no",
+     *     tags={"Trigger"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page"},
+     *          type="object",
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     * 
+     * @OA\POST(
+     *     path="/api/trigger",
+     *     summary="api to update or insert",
+     *     description="performs update with id or insert with given details",
+     *     tags={"Trigger"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page","name","endpoint"},
+     *          type="object",
+     *            @OA\Property(property="id", type="string", example="5", description="id of record to be updated, leave eempty if inserting new record"),
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *            @OA\Property(property="name", type="string", example="thread-01", description="name of thread"),
+     *            @OA\Property(property="endpoint", type="string", example="3", description="number of retry after fail"),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     * 
+     * @OA\DELETE(
+     *     path="/api/trigger",
+     *     summary="delete a trigger",
+     *     description="delete a trigger from list",
+     *     tags={"Trigger"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page","id"},
+     *          type="object",
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *            @OA\Property(property="id", type="string", example="5", description="id of record to be deleted"),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     */
     public static function list_trigger(Request $req)
     {
         if ($req->isMethod('post')) {
