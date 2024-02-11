@@ -504,6 +504,178 @@
                     }
                 ]
             }
+        },
+        "/api/workers": {
+            "get": {
+                "tags": [
+                    "Worker"
+                ],
+                "summary": "list of all worker thread",
+                "description": "returns paginated list with size and page no",
+                "operationId": "9b444b971c5c5d69ce98754451cb4fc1",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page"
+                                ],
+                                "properties": {
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Worker"
+                ],
+                "summary": "api to update or insert",
+                "description": "performs update with id or insert with given details",
+                "operationId": "341f0559f7d7fc93a4952a70d60bcecf",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page",
+                                    "name",
+                                    "tries",
+                                    "memory",
+                                    "timeout"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "id of record to be updated, leave eempty if inserting new record",
+                                        "type": "string",
+                                        "example": "5"
+                                    },
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "description": "name of worker thread",
+                                        "type": "string",
+                                        "example": "thread-01"
+                                    },
+                                    "tries": {
+                                        "description": "number of retry after fail",
+                                        "type": "string",
+                                        "example": "3"
+                                    },
+                                    "memory": {
+                                        "description": "amount of memory in mb allocated for this worker thread",
+                                        "type": "string",
+                                        "example": "512"
+                                    },
+                                    "timeout": {
+                                        "description": "deadline in second to fail job if it takes too long",
+                                        "type": "string",
+                                        "example": "60"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Worker"
+                ],
+                "summary": "delete a worker thread",
+                "description": "delete a worker thread from list",
+                "operationId": "f847be371cc915502c2b83e1645f4509",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page",
+                                    "id"
+                                ],
+                                "properties": {
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "id": {
+                                        "description": "id of record to be deleted",
+                                        "type": "string",
+                                        "example": "5"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
         }
     },
     "components": {

@@ -11,10 +11,70 @@ class WorkerController extends Controller
     public function __construct()
     {
     }
-    public function index()
-    {
-        return view('web.worker');
-    }
+    /**
+     * @OA\GET(
+     *     path="/api/workers",
+     *     summary="list of all worker thread",
+     *     description="returns paginated list with size and page no",
+     *     tags={"Worker"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page"},
+     *          type="object",
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     * 
+     * @OA\POST(
+     *     path="/api/workers",
+     *     summary="api to update or insert",
+     *     description="performs update with id or insert with given details",
+     *     tags={"Worker"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page","name","tries","memory","timeout"},
+     *          type="object",
+     *            @OA\Property(property="id", type="string", example="5", description="id of record to be updated, leave eempty if inserting new record"),
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *            @OA\Property(property="name", type="string", example="thread-01", description="name of worker thread"),
+     *            @OA\Property(property="tries", type="string", example="3", description="number of retry after fail"),
+     *            @OA\Property(property="memory", type="string", example="512", description="amount of memory in mb allocated for this worker thread"),
+     *            @OA\Property(property="timeout", type="string", example="60", description="deadline in second to fail job if it takes too long"),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     * 
+     * @OA\DELETE(
+     *     path="/api/workers",
+     *     summary="delete a worker thread",
+     *     description="delete a worker thread from list",
+     *     tags={"Worker"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page","id"},
+     *          type="object",
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *            @OA\Property(property="id", type="string", example="5", description="id of record to be deleted"),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     */
     public static function list_workers(Request $req)
     {
         if ($req->isMethod('post')) {
@@ -57,5 +117,9 @@ class WorkerController extends Controller
         $query = Worker::select('*');
         $rec = $query->paginate($size, ['*'], 'page', $page);
         return $rec;
+    }
+    public function index()
+    {
+        return view('web.worker');
     }
 }
