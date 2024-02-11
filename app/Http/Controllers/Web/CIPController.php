@@ -108,6 +108,26 @@ class CIPController extends Controller
             return response()->json($data, 200);
         }
     }
+    /**
+     * @OA\GET(
+     *     path="/api/cip",
+     *     summary="list of all cip devices",
+     *     description="returns paginated list with size and page no",
+     *     tags={"CIP"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"size","page"},
+     *          type="object",
+     *            @OA\Property(property="size", type="string", example="10", description="pagination limit"),
+     *            @OA\Property(property="page", type="string", example="1", description="page no."),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     */
     public static function list_cip(Request $req)
     {
         $size = $_GET['size'] ?? $_POST['size'] ?? 10;

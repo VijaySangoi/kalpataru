@@ -239,6 +239,53 @@
                 ]
             }
         },
+        "/api/cip": {
+            "get": {
+                "tags": [
+                    "Trigger"
+                ],
+                "summary": "list of all cip devices",
+                "description": "returns paginated list with size and page no",
+                "operationId": "f76aa9ff6c5cabc89673190d145fa452",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page"
+                                ],
+                                "properties": {
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
         "/api/log-file": {
             "get": {
                 "tags": [
