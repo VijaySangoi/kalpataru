@@ -238,6 +238,106 @@
                     }
                 ]
             }
+        },
+        "/api/log-file": {
+            "get": {
+                "tags": [
+                    "Log"
+                ],
+                "summary": "reads serial connection & historical connection",
+                "description": "reads serial log, can read live connection",
+                "operationId": "48e41ce952b2178007fef236837d0632",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fl_name"
+                                ],
+                                "properties": {
+                                    "fl_name": {
+                                        "description": "reads log file name",
+                                        "type": "string",
+                                        "example": "COM{port}-log-{dd}_{m}_{yyyy}.txt"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Log"
+                ],
+                "summary": "write to serial connection",
+                "description": "manual write to serial pipe file, can write to live connection",
+                "operationId": "7c8e274944df795a8dad8a63e4331cf8",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "fl_name"
+                                ],
+                                "properties": {
+                                    "fl_name": {
+                                        "description": "write to pipe file",
+                                        "type": "json",
+                                        "example": "COM{port}-pipe-{dd}_{m}_{yyyy}.txt"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
+        "/api/list-log-file": {
+            "get": {
+                "tags": [
+                    "Log"
+                ],
+                "summary": "list all log file",
+                "description": "list all historical log file available",
+                "operationId": "16962656cdd3418c5b4547fc397f3f09",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
         }
     },
     "components": {

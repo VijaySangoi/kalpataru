@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::post('/job','App\Http\Controllers\Api\AllApiController@job');
     Route::get('/file/{file}','App\Http\Controllers\Api\AllApiController@file');
     Route::match(['GET','POST','DELETE'],'/devices/serial','App\Http\Controllers\Api\AllApiController@list_serial_devices');
-    Route::match(['GET','POST','DELETE'],'/log-file','App\Http\Controllers\Api\AllApiController@log_files');
+    Route::match(['GET','POST'],'/log-file','App\Http\Controllers\Api\AllApiController@log_files');
     Route::match(['GET','POST','DELETE'],'/workers','App\Http\Controllers\Api\AllApiController@list_workers');
     Route::match(['GET','POST','DELETE'],'/trigger','App\Http\Controllers\Api\AllApiController@list_trigger');
     Route::post('/cip/register','App\Http\Controllers\Api\AllApiController@cip_register');
