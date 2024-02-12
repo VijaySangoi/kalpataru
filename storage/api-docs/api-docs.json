@@ -128,6 +128,106 @@
                 ]
             }
         },
+        "/api/option": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "returns list of job-files name",
+                "description": "list file name",
+                "operationId": "d50c4960bbeae163e1c642555e2381fd",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
+        "/api/file/{file}": {
+            "get": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "returns content of job file",
+                "description": "allows to read content of files listed in option api",
+                "operationId": "da9495bb607c276f5811c16f0633396e",
+                "parameters": [
+                    {
+                        "name": "file",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
+        "/api/job": {
+            "post": {
+                "tags": [
+                    "Job"
+                ],
+                "summary": "api to update or insert",
+                "description": "pass only name to create or pass file(list from option api) and data to be update",
+                "operationId": "1e77edbcf846100dcbeba3ceebafdc7b",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "data",
+                                    "name",
+                                    "file"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "name of job file to created",
+                                        "type": "string",
+                                        "example": "samplejob01"
+                                    },
+                                    "file": {
+                                        "description": "name of job file to be updated",
+                                        "type": "string",
+                                        "example": "samplejob01"
+                                    },
+                                    "data": {
+                                        "description": "new content",
+                                        "type": "string",
+                                        "example": "filecontent"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            }
+        },
         "/api/cip/register": {
             "post": {
                 "tags": [

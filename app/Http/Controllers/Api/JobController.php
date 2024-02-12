@@ -49,6 +49,16 @@ class JobController extends Controller
             $dummy = $job::dispatch()->onQueue($line);
         }
     }
+    /**
+     * @OA\get(
+     *     path="/api/option",
+     *     summary="returns list of job-files name",
+     *     description="list file name",
+     *     tags={"Job"},
+     *     security = {{ "Authorization": {} }},
+     *    @OA\Response(response=200,description="OK")
+     * )
+     */
     public static function option()
     {
         $files = scandir(app_path('jobs'));
@@ -61,6 +71,43 @@ class JobController extends Controller
         });
         return $files;
     }
+    /**
+     * 
+     * @OA\get(
+     *     path="/api/file/{file}",
+     *     summary="returns content of job file",
+     *     description="allows to read content of files listed in option api",
+     *     tags={"Job"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\Parameter(
+     *          name="file",
+     *          in="path",
+     *          required=true,
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     * 
+     * @OA\POST(
+     *     path="/api/job",
+     *     summary="api to update or insert",
+     *     description="pass only name to create or pass file(list from option api) and data to be update",
+     *     tags={"Job"},
+     *     security = {{ "Authorization": {} }},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="json body",
+     *        @OA\JsonContent(
+     *          required={"data","name","file"},
+     *          type="object",
+     *            @OA\Property(property="name", type="string", example="samplejob01", description="name of job file to created"),
+     *            @OA\Property(property="file", type="string", example="samplejob01", description="name of job file to be updated"),
+     *            @OA\Property(property="data", type="string", example="filecontent", description="new content"),
+     *        ),
+     *     ),
+     *    @OA\Response(response=200,description="OK")
+     * )
+     * 
+     */
     public static function file(Request $req,$file)
     {
         $filename = app_path('jobs')."\\".$file.".php";
