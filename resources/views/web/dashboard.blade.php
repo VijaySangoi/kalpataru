@@ -60,8 +60,8 @@
     setInterval(fetch_dashboard, 60000);
     fetch_dashboard();
 
-    function fetch_dashboard() {
-        var comp = $('.active.drawpad.dashboard.show')[0];
+    function fetch_dashboard(param) {
+        var comp = param ?? $('.active.drawpad.dashboard.show')[0];
         if(comp)
         {
             var name = comp.id.replace('nav-', '');
@@ -136,6 +136,10 @@
             e.currentTarget.innerHTML='<i class="fa-solid fa-lock"></i>';
             $('.draggable').draggable('destroy');
         }
+    })
+    $(".dash-btn").click((e)=>{
+        var comp = (e.target.dataset.target);
+        fetch_dashboard($(comp)[0]);
     })
 </script>
 @endpush
