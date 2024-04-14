@@ -13,8 +13,8 @@
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('black') }}/img/apple-icon.png">
     <link rel="icon" type="image/png" href="{{ asset('black') }}/img/favicon.png">
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="{{ asset('css') }}/css.css" rel="stylesheet" />
+    <link href="{{ asset('css') }}/all.min.css" rel="stylesheet">
     <!-- Icons -->
     <link href="{{ asset('black') }}/css/nucleo-icons.css" rel="stylesheet" />
     <!-- CSS -->
@@ -66,9 +66,6 @@
     <script src="{{ asset('black') }}/js/core/jquery.min.js"></script>
     <script src="{{ asset('black') }}/js/core/popper.min.js"></script>
     <script src="{{ asset('black') }}/js/core/bootstrap.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <!-- Place this tag in your head or just before your close body tag. -->
-    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script> --}}
     <!-- Chart JS -->
     {{-- <script src="{{ asset('black') }}/js/plugins/chartjs.min.js"></script> --}}
     <!--  Notifications Plugin    -->
@@ -76,7 +73,7 @@
 
     <script src="{{ asset('black') }}/js/black-dashboard.js?v=1.0.0"></script>
     <script src="{{ asset('black') }}/js/theme.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="{{ asset('js') }}/jquery-ui.js"></script>
     <script>
         $(document).ready(function() {
             $().ready(function() {

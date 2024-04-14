@@ -19,7 +19,7 @@
 @endsection
 
 @push('js')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.32.5/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ asset('js') }}/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setShowPrintMargin(false);
