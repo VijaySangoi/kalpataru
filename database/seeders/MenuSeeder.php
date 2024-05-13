@@ -20,25 +20,31 @@ class MenuSeeder extends Seeder
                 'icon' => 'icon-chart-pie-36'
             ],
             [
-                'name' => 'Job',
-                'pageslug' => 'job',
-                'url' => '/job',
-                'icon' => 'icon-chart-pie-36'
-            ],
-            [
                 'name' => 'Triggers',
                 'pageslug' => 'triggers',
                 'url' => '/triggers',
                 'icon' => 'icon-controller'
             ],
             [
-                'name' => 'Sensors',
+                'name' => 'Job',
+                'pageslug' => 'job',
+                'url' => '/job',
+                'icon' => 'icon-chart-pie-36'
+            ],
+            [
+                'name' => 'CIP Nodes',
+                'pageslug' => 'cip',
+                'url' => '/cip',
+                'icon' => 'icon-puzzle-10'
+            ],
+            [
+                'name' => 'CIP Devices',
                 'pageslug' => 'sensors',
                 'url' => '/sensors',
                 'icon' => 'icon-controller'
             ],
             [
-                'name' => 'Serial',
+                'name' => 'Serial Devices',
                 'pageslug' => 'serial',
                 'url' => '/serial',
                 'icon' => 'icon-puzzle-10'
@@ -47,12 +53,6 @@ class MenuSeeder extends Seeder
                 'name' => 'Workers',
                 'pageslug' => 'workers',
                 'url' => '/workers',
-                'icon' => 'icon-puzzle-10'
-            ],
-            [
-                'name' => 'CIP',
-                'pageslug' => 'cip',
-                'url' => '/cip',
                 'icon' => 'icon-puzzle-10'
             ],
             [
