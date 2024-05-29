@@ -228,14 +228,14 @@
                 ]
             }
         },
-        "/api/cip/register": {
+        "/api/devices/message": {
             "post": {
                 "tags": [
-                    "CIP"
+                    "Devices"
                 ],
-                "summary": "register endpoint",
-                "description": "hit this endpoint with microcontroller and register/list/notify your ip address and details to server ",
-                "operationId": "333b09165d91a6793f24b5f95131b549",
+                "summary": "send data between devices",
+                "description": "api to exchange data between nodes",
+                "operationId": "6505d51b371147583f92a4d621ddad63",
                 "requestBody": {
                     "description": "json body",
                     "required": true,
@@ -243,82 +243,14 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "device_name"
+                                    "mess"
                                 ],
                                 "properties": {
-                                    "device_name": {
-                                        "description": "allowed only camel_case, if not passed as camel case the server will convert it to camel_case",
-                                        "type": "string",
-                                        "example": "3d_printer"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "security": [
-                    {
-                        "Authorization": []
-                    }
-                ]
-            }
-        },
-        "/api/cip/message": {
-            "get": {
-                "tags": [
-                    "CIP"
-                ],
-                "summary": "register endpoint",
-                "description": "endpoint for MCU to fetch data. aka-rx of uart",
-                "operationId": "c1cc826e3420686dcd8ecb3a52695737",
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "security": [
-                    {
-                        "Authorization": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "CIP"
-                ],
-                "summary": "register endpoint",
-                "description": "enpoint for MCU to deliver data. aka-tx of uart",
-                "operationId": "805e9d0b7c039e726a15511b145ebdff",
-                "requestBody": {
-                    "description": "json body",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "sensors"
-                                ],
-                                "properties": {
-                                    "sensors": {
-                                        "description": "valid json only",
+                                    "mess": {
+                                        "description": "message",
                                         "type": "json",
                                         "example": {
-                                            "robot_arm": {
-                                                "": "G1 X0 Y120 Z120"
-                                            },
-                                            "3d_printer": {
-                                                "hot_end": "220c",
-                                                "ins": "G1 F2700 E-5"
-                                            },
-                                            "miner": {
-                                                "hash": "120h/s"
-                                            }
+                                            "to": "device_name"
                                         }
                                     }
                                 },
@@ -331,22 +263,17 @@
                     "200": {
                         "description": "OK"
                     }
-                },
-                "security": [
-                    {
-                        "Authorization": []
-                    }
-                ]
+                }
             }
         },
-        "/api/cip": {
+        "/api/devices": {
             "get": {
                 "tags": [
-                    "CIP"
+                    "Devices"
                 ],
-                "summary": "list of all cip devices",
+                "summary": "list of all Devices",
                 "description": "returns paginated list with size and page no",
-                "operationId": "f76aa9ff6c5cabc89673190d145fa452",
+                "operationId": "6236e669adb611d3106f5ea192c19f03",
                 "requestBody": {
                     "description": "json body",
                     "required": true,
@@ -367,6 +294,126 @@
                                         "description": "page no.",
                                         "type": "string",
                                         "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Devices"
+                ],
+                "summary": "api to update or insert",
+                "description": "performs update with id or insert with given details",
+                "operationId": "3e878862e60e3503125e1070327db120",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page",
+                                    "name",
+                                    "sheet",
+                                    "node",
+                                    "id"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "id of record to be updated, leave eempty if inserting new record",
+                                        "type": "string",
+                                        "example": "5"
+                                    },
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "name": {
+                                        "description": "name of sensor",
+                                        "type": "string",
+                                        "example": "temp_sensor-01"
+                                    },
+                                    "sheet": {
+                                        "description": "id of sheet",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "node": {
+                                        "description": "id of cip or serial device",
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Devices"
+                ],
+                "summary": "delete a Devices",
+                "description": "delete a Devices",
+                "operationId": "950fcef0e11f05255d9f444fcad2718f",
+                "requestBody": {
+                    "description": "json body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "size",
+                                    "page",
+                                    "id"
+                                ],
+                                "properties": {
+                                    "size": {
+                                        "description": "pagination limit",
+                                        "type": "string",
+                                        "example": "10"
+                                    },
+                                    "page": {
+                                        "description": "page no.",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "id": {
+                                        "description": "id of record to be deleted",
+                                        "type": "string",
+                                        "example": "5"
                                     }
                                 },
                                 "type": "object"
@@ -486,14 +533,14 @@
                 ]
             }
         },
-        "/api/sensors": {
+        "/api/nodes": {
             "get": {
                 "tags": [
-                    "Sensor"
+                    "Nodes"
                 ],
-                "summary": "list of all Sensor",
+                "summary": "list of all nodes",
                 "description": "returns paginated list with size and page no",
-                "operationId": "4afadb96bd302f3c557bd63f5c0f19c9",
+                "operationId": "390093a96daae656c626a86594eb4ca0",
                 "requestBody": {
                     "description": "json body",
                     "required": true,
@@ -534,11 +581,11 @@
             },
             "post": {
                 "tags": [
-                    "Sensor"
+                    "Nodes"
                 ],
                 "summary": "api to update or insert",
                 "description": "performs update with id or insert with given details",
-                "operationId": "8467b49432721f4195d02a92e91500db",
+                "operationId": "5edc9648dafe367b2951be5641549cbb",
                 "requestBody": {
                     "description": "json body",
                     "required": true,
@@ -546,11 +593,11 @@
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "size",
-                                    "page",
+                                    "address",
+                                    "type",
                                     "name",
-                                    "sheet",
-                                    "node"
+                                    "status",
+                                    "id"
                                 ],
                                 "properties": {
                                     "id": {
@@ -573,13 +620,18 @@
                                         "type": "string",
                                         "example": "temp_sensor-01"
                                     },
-                                    "sheet": {
-                                        "description": "id of sheet",
+                                    "type": {
+                                        "description": "1 - serial or 2 - cip",
                                         "type": "string",
                                         "example": "1"
                                     },
-                                    "node": {
-                                        "description": "id of cip or serial device",
+                                    "address": {
+                                        "description": "ipaddress for cip or com details (json)",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "status": {
+                                        "description": "ipaddress for cip or com details (json)",
                                         "type": "string",
                                         "example": "1"
                                     }
@@ -602,177 +654,11 @@
             },
             "delete": {
                 "tags": [
-                    "Sensor"
+                    "Nodes"
                 ],
-                "summary": "delete a Sensor",
-                "description": "delete a Sensor",
-                "operationId": "028cf0ae889815ad05c30a50e8dea6fe",
-                "requestBody": {
-                    "description": "json body",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "size",
-                                    "page",
-                                    "id"
-                                ],
-                                "properties": {
-                                    "size": {
-                                        "description": "pagination limit",
-                                        "type": "string",
-                                        "example": "10"
-                                    },
-                                    "page": {
-                                        "description": "page no.",
-                                        "type": "string",
-                                        "example": "1"
-                                    },
-                                    "id": {
-                                        "description": "id of record to be deleted",
-                                        "type": "string",
-                                        "example": "5"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "security": [
-                    {
-                        "Authorization": []
-                    }
-                ]
-            }
-        },
-        "/api/list_serial_devices": {
-            "get": {
-                "tags": [
-                    "Serial"
-                ],
-                "summary": "list of all serial device",
-                "description": "returns paginated list with size and page no",
-                "operationId": "09089acd42e2ca7fbfadabc1befe6c68",
-                "requestBody": {
-                    "description": "json body",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "size",
-                                    "page"
-                                ],
-                                "properties": {
-                                    "size": {
-                                        "description": "pagination limit",
-                                        "type": "string",
-                                        "example": "10"
-                                    },
-                                    "page": {
-                                        "description": "page no.",
-                                        "type": "string",
-                                        "example": "1"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "security": [
-                    {
-                        "Authorization": []
-                    }
-                ]
-            },
-            "post": {
-                "tags": [
-                    "Serial"
-                ],
-                "summary": "api to update or insert",
-                "description": "performs update with id or insert with given details",
-                "operationId": "2d50a8e602265a7ae184e925fd4a2065",
-                "requestBody": {
-                    "description": "json body",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "size",
-                                    "page",
-                                    "name",
-                                    "port",
-                                    "baudrate"
-                                ],
-                                "properties": {
-                                    "id": {
-                                        "description": "id of record to be updated, leave eempty if inserting new record",
-                                        "type": "string",
-                                        "example": "5"
-                                    },
-                                    "size": {
-                                        "description": "pagination limit",
-                                        "type": "string",
-                                        "example": "10"
-                                    },
-                                    "page": {
-                                        "description": "page no.",
-                                        "type": "string",
-                                        "example": "1"
-                                    },
-                                    "name": {
-                                        "description": "name of sensor",
-                                        "type": "string",
-                                        "example": "CNC-01"
-                                    },
-                                    "port": {
-                                        "description": "name of com port",
-                                        "type": "string",
-                                        "example": "COM8"
-                                    },
-                                    "baudrate": {
-                                        "description": "baudrate of receiving microcontroller node",
-                                        "type": "string",
-                                        "example": "115200"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "OK"
-                    }
-                },
-                "security": [
-                    {
-                        "Authorization": []
-                    }
-                ]
-            },
-            "delete": {
-                "tags": [
-                    "Serial"
-                ],
-                "summary": "delete a serial device",
-                "description": "delete a serial device from monitoring list",
-                "operationId": "5a2011ccaba9250643fa035e368597e4",
+                "summary": "delete a nodes",
+                "description": "delete a nodes",
+                "operationId": "4ab475ba00f349adeb1979ca094bc7db",
                 "requestBody": {
                     "description": "json body",
                     "required": true,
