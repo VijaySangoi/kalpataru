@@ -32,22 +32,16 @@ class MenuSeeder extends Seeder
                 'icon' => 'icon-chart-pie-36'
             ],
             [
-                'name' => 'CIP Nodes',
-                'pageslug' => 'cip',
-                'url' => '/cip',
+                'name' => 'Nodes',
+                'pageslug' => 'nodes',
+                'url' => '/nodes',
                 'icon' => 'icon-puzzle-10'
             ],
             [
-                'name' => 'CIP Devices',
-                'pageslug' => 'sensors',
-                'url' => '/sensors',
+                'name' => 'Devices',
+                'pageslug' => 'devices',
+                'url' => '/devices',
                 'icon' => 'icon-controller'
-            ],
-            [
-                'name' => 'Serial Devices',
-                'pageslug' => 'serial',
-                'url' => '/serial',
-                'icon' => 'icon-puzzle-10'
             ],
             [
                 'name' => 'Workers',

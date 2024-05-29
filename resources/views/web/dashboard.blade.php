@@ -5,7 +5,7 @@
     <nav>
         <div class="nav nav-tabs">
             @foreach($rec2 as $ky => $val)
-            <button class="nav-link btn btn-info dash-btn" id="nav-{{$val->name}}-tab" data-toggle="tab" data-target="#nav-{{$val->name}}" type="button" role="tab">
+            <button class="nav-link btn btn-info dash-btn btb" id="nav-{{$val->name}}-tab" data-toggle="tab" data-target="#nav-{{$val->name}}" type="button" role="tab">
                 {{$val->name}}
             </button>
             @endforeach
@@ -45,7 +45,7 @@
 
     function dummy(event, ui) {
         $.ajax({
-            url: "/api/sensor_pos",
+            url: "/api/dev_pos",
             type: "POST",
             headers: {
                 "Authorization": "Bearer " + apitoken
@@ -137,7 +137,7 @@
             $('.draggable').draggable('destroy');
         }
     })
-    $(".dash-btn").click((e)=>{
+    $(".btb").click((e)=>{
         var comp = (e.target.dataset.target);
         fetch_dashboard($(comp)[0]);
     })

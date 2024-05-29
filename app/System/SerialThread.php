@@ -8,7 +8,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Symfony\Component\Process\Process;
-use App\Models\Com;
+use App\Models\Node;
 
 class SerialThread implements ShouldQueue
 {
@@ -27,14 +27,21 @@ class SerialThread implements ShouldQueue
      */
     public function handle(): void
     {
-        $rec = Com::select('Port','BaudRate')->get();
+        $rec = Node::select('address')->where('type','ser')->get();
         foreach($rec as $ky => $val)
         {
-            $com = strtoupper($val->Port);
+            $param = explode(",",$val->address);
+            $com = strtoupper($param[0]);
             $path = "app/Comms/InterfaceSerial.py";
-            $arr = ["python", $path, $com, $val->BaudRate];
-            $process = new Process($arr);
-            $process->start();
+            $arr = ["python", $path, $com, $param[1]];
+            try{
+                $process = new Process($arr);
+                $process->start();
+            }
+            catch(\exception $e)
+            {
+                var_dump($e);
+            }
         }
         sleep(5);
         self::dispatch()->onQueue($this->q_name);

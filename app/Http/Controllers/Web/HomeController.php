@@ -32,9 +32,9 @@ class HomeController extends Controller
     public static function dashboard_component()
     {
         $name = $_POST['name'];
-        $qy = DB::table('sensors');
-        $qy->join('sheets', 'sensors.sheet', '=', 'sheets.id');
-        $qy->select('sensors.*', 'sheets.name as sname');
+        $qy = DB::table('devices');
+        $qy->join('sheets', 'devices.sheet', '=', 'sheets.id');
+        $qy->select('devices.*', 'sheets.name as sname');
         $qy->where('sheets.name', '=', $name);
         $rec = $qy->get();
         return response()->json($rec, 200);

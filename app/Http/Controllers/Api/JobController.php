@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\ListJob;
 use OpenApi\Annotations as OA;
 use Illuminate\Http\Request;
 use App\Models\Triggers;
@@ -132,11 +133,11 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use app\Http\Traits\Access;
+use App\System\AIThread;
 
 class samplejob1 implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, Access;
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -156,6 +157,12 @@ class samplejob1 implements ShouldQueue
 }";
             fwrite($file,$data);
             fclose($file);
+            $qy = ListJob::create(
+                [
+                    "job_name" => $name,
+                    "role_id" => '0'
+                ]
+            );
         }
         if(isset($_POST['file']))
         {

@@ -4,17 +4,19 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class DatabaseSeeder extends Seeder
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        $this->call([
-            MenuSeeder::class,
-            UserSeeder::class,
+        DB::table('users')->insert([
+            'name' => 'Admin',
+            'email' => 'admin@raidensoft.in',
+            'password' => bcrypt('Raidensoft123'),
         ]);
     }
 }
