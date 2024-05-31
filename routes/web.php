@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function(){
 	Route::get('/logs', 'App\Http\Controllers\Web\LogController@index');
 	Route::get('/triggers', 'App\Http\Controllers\Web\TriggersController@index');
 	Route::get('/devices', 'App\Http\Controllers\Web\DevicesController@index');
+	Route::get('/transformer', 'App\Http\Controllers\Web\TransformerController@index');
 });
 
 // Route::group(['middleware' => 'auth'], function () {

@@ -32,6 +32,12 @@ class MenuSeeder extends Seeder
                 'icon' => 'icon-chart-pie-36'
             ],
             [
+                'name' => 'Transformers',
+                'pageslug' => 'transformer',
+                'url' => '/transformer',
+                'icon' => 'icon-atom'
+            ],
+            [
                 'name' => 'Nodes',
                 'pageslug' => 'nodes',
                 'url' => '/nodes',

@@ -30,5 +30,6 @@ Route::middleware('auth:sanctum')->group( function () {
     Route::match(['GET','POST','DELETE'],'/trigger','App\Http\Controllers\Api\AllApiController@list_trigger');
     Route::post('/dashboard_component','App\Http\Controllers\Api\AllApiController@dashboard_component');
     Route::post('/sheet','App\Http\Controllers\Api\AllApiController@add_sheet');
+    Route::match(['GET','POST','DELETE'],'/transformer','App\Http\Controllers\Api\AllApiController@transformer');
 });
 Route::match(['GET','POST'],'/devices/message','App\Http\Controllers\Api\AllApiController@devices_message');

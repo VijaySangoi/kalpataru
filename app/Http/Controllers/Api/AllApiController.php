@@ -10,6 +10,7 @@ use App\Http\Controllers\Web\DevicesController;
 use App\Http\Controllers\Web\WorkerController;
 use App\Http\Controllers\Web\TriggersController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\TransformerController;
 
 class AllApiController extends Controller
 {
@@ -84,6 +85,11 @@ class AllApiController extends Controller
     public function job(Request $req)
     {
         $res = JobController::job($req);
+        return $res;
+    }
+    public function transformer(Request $req)
+    {
+        $res = TransformerController::transformer($req);
         return $res;
     }
 }
