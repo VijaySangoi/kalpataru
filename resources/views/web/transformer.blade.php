@@ -49,7 +49,7 @@
     $("#edit_type").val(data.type);
   });
   $("#add #save").click(() => {
-    name = $("#add_trigger").val();
+    name = $("#add_name").val();
     namespace = $("#add_namespace").val();
     type = $("#add_type").val();
     table.setData("/api/transformer",{"name":name,"namespace":namespace,"type":type},"POST");

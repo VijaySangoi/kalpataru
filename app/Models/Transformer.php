@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transformer extends Model
 {
     use HasFactory;
+    protected $primaryKey = "transformer_id";
     protected $fillable = [
         'name',
         'full_namespace',
