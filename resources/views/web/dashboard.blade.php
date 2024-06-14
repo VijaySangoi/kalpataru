@@ -57,7 +57,7 @@
             }
         })
     }
-    setInterval(fetch_dashboard, 60000);
+    setInterval(fetch_dashboard, @php echo config('kalpataru.refresh_interval')@endphp * 1000);
     fetch_dashboard();
 
     function fetch_dashboard(param) {
